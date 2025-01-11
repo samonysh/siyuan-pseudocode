@@ -1,12 +1,12 @@
 {
-  "name": "widget-sample",
-  "author": "Vanessa",
-  "url": "https://github.com/siyuan-note/widget-sample",
-  "version": "0.0.3",
+  "name": "siyuan-pseudocode",
+  "author": "Samon Yu",
+  "url": "https://github.com/samonysh/siyuan-pseudocode",
+  "version": "0.0.1",
   "minAppVersion": "2.8.8",
   "displayName": {
-    "default": "Widget Sample",
-    "zh_CN": "挂件示例"
+    "default": "siyuan-pseudocode",
+    "zh_CN": "伪代码"
   },
   "description": {
     "default": "This is a widget sample",

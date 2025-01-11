@@ -1,59 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello, Bootstrap Table!</title>
+    <!-- KaTeX CSS and JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"
+      integrity="sha512-EKW5YvKU3hpyyOcN6jQnAxO/L8gts+YdYV6Yymtl8pk9YlYFtqJgihORuRoBXK8/cOIlappdU6Ms8KdK6yBCgA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- Pseudocode CSS and JS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
+  </head>
+  <body>
+    <div><textarea id="input-text" rows="15" cols="80"></textarea></div>
+    <div>
+      <button id="submit" type="button">
+        <span>提交</span>
+      </button>
+    </div>
+    <div id="output-container" width="100%" height="auto">
+    </div>
+  </body>
+  <script>
+    try {
+      // 输入Latex格式的代码
+      const inputText = document.getElementById("input-text");
+      // 提交按钮
+      const submit = document.getElementById("submit");
+      // 输出
+      const outputContainer = document.getElementById("output-container");
 
-    <link rel="stylesheet" href="static/bootstrap.min.css">
-    <link rel="stylesheet" href="static/bootstrap-table.min.css">
-</head>
-<body>
-<table id="table">
-</table>
 
-<script src="static/jquery.min.js"></script>
-<script src="static/popper.min.js"></script>
-<script src="static/bootstrap.min.js"></script>
-<script src="static/bootstrap-table.min.js"></script>
 
-<script>
-    $.ajax({
-        method: "POST",
-        url: "http://127.0.0.1:6806/api/query/sql",
-        data: JSON.stringify({
-            "stmt": "SELECT * FROM blocks WHERE content LIKE'%content%' LIMIT 7"
-        })
-    }).done(result => {
-        console.log(result);
-
-        $('#table').bootstrapTable({
-            sortable: true,
-            columns: [{
-                field: 'id',
-                title: 'ID',
-                width: "100",
-            }, {
-                field: 'content',
-                title: 'Content',
-                width: "100",
-            }, {
-                field: 'type',
-                title: 'Type',
-                width: "20",
-            }, {
-                field: 'created',
-                title: 'Created',
-                width: "100",
-            }, {
-                field: 'updated',
-                title: 'Updated',
-                width: "100",
-            }
-            ],
-            data: result.data,
+      function getCode() {
+        // 获取输入的Latex格式的代码
+        const inputTextValue = inputText.value;
+        console.log(inputTextValue);
+        // 输出
+        let outputCode = document.createElement("pre");
+        outputCode.textContent = inputTextValue;
+        outputCode.className = "pseudocode";
+        outputCode.id = "output-code";
+        outputCode.style.display = "block";
+        console.log(outputCode);
+        outputContainer.appendChild(outputCode);
+        pseudocode.renderElement(document.getElementById("output-code"), {
+          lineNumber: true,
         });
-    })
-</script>
-</body>
+      }
+
+      submit.addEventListener("click", getCode);
+    } catch (error) {
+      console.log(error);
+    }
+  </script>
 </html>
