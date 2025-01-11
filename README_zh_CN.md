@@ -1,106 +1,113 @@
-[English](https://github.com/siyuan-note/widget-sample/blob/main/README.md)
+# siyuan-pseudocode 伪代码
 
-# 思源笔记挂件示例
+## 介绍
 
-## 开始
+该挂件基于[pseudocode.js](https://github.com/SaswatPadhi/pseudocode.js)和[KaTeX](https://github.com/Khan/KaTeX)构建，旨在为思源笔记提供基于LaTeX语法的伪代码的展示。
 
-* 通过 <kbd>Use this widget</kbd> 按钮将该库文件复制到你自己的库中，请注意库名必须和挂件名称一致，默认分支必须为 `main`
-* 将你的库克隆到本地开发文件夹中，为了方便可以直接将开发文件夹放置在 `{workspace}/conf/appearance/widgets/` 下
+## 使用
 
-## 开发
+* 将LaTeX的伪代码语法粘贴到文本框中，点击提交按钮，即可显示渲染的伪代码块。
+* 点击修改按钮，渲染的伪代码块会隐藏，显示文本框。对文本框进行修改即可。
 
-* widget.json
-* icon.png (160*160)
-* preview.png (1024*768)
-* README*.md
-* index.html
+## LaTeX 伪代码相关语法介绍
 
-## widget.json
+具体可以参考[pseudocode.js](https://github.com/SaswatPadhi/pseudocode.js?tab=readme-ov-file#grammar)以及[algorithmic](https://ctan.org/pkg/algorithms)。
 
-```json
-{
-  "name": "widget-sample",
-  "author": "Vanessa",
-  "url": "https://github.com/siyuan-note/widget-sample",
-  "version": "0.0.3",
-  "minAppVersion": "2.8.8",
-  "displayName": {
-    "default": "Widget Sample",
-    "zh_CN": "挂件示例"
-  },
-  "description": {
-    "default": "This is a widget sample",
-    "zh_CN": "这是一个挂件示例"
-  },
-  "readme": {
-    "default": "README.md",
-    "zh_CN": "README_zh_CN.md"
-  },
-  "funding": {
-    "openCollective": "",
-    "patreon": "",
-    "github": "",
-    "custom": [
-      "https://ld246.com/sponsor"
-    ]
-  },
-  "keywords": [
-    "sample", "示例"
-  ]
-}
+### 示例和注释
+
+以下给出快速排序伪代码的示例以及中文注释。
+
+```latex
+% This quicksort algorithm is extracted from Chapter 7, Introduction to Algorithms (3rd edition)
+% 声明algorithm块
+\begin{algorithm}
+% 标题
+\caption{Quicksort}
+% 声明algorithmic块
+\begin{algorithmic}
+% 定义函数（procedure）
+\PROCEDURE{Quicksort}{$A, p, r$}
+    % 判断逻辑
+    \IF{$p < r$} 
+        % 语句及函数调用
+        \STATE $q = $ \CALL{Partition}{$A, p, r$}
+        \STATE \CALL{Quicksort}{$A, p, q - 1$}
+        \STATE \CALL{Quicksort}{$A, q + 1, r$}
+    \ENDIF
+\ENDPROCEDURE
+\PROCEDURE{Partition}{$A, p, r$}
+    \STATE $x = A[r]$
+    \STATE $i = p - 1$
+    % 循环逻辑
+    \FOR{$j = p$ \TO $r - 1$}
+        \IF{$A[j] < x$}
+            \STATE $i = i + 1$
+            \STATE exchange
+            $A[i]$ with     $A[j]$
+        \ENDIF
+        \STATE exchange $A[i]$ with $A[r]$
+    \ENDFOR
+\ENDPROCEDURE
+\end{algorithmic}
+\end{algorithm}
 ```
 
-* `name`：挂件名称，必须和库名一致，且全局唯一（集市中不能有重名挂件）
-* `author`：挂件作者名
-* `url`：挂件仓库地址
-* `version`：挂件版本号，建议遵循 [semver](https://semver.org/lang/zh-CN/) 规范
-* `minAppVersion`：挂件支持的最低思源笔记版本号
-* `displayName`：模板显示名称，主要用于模板集市列表中显示，支持多语言
-    * `default`：默认语言，必须存在
-    * `zh_CN`、`en_US` 等其他语言：可选，建议至少提供中文和英文
-* `description`：挂件描述，主要用于挂件集市列表中显示，支持多语言
-    * `default`：默认语言，必须存在
-    * `zh_CN`、`en_US` 等其他语言：可选，建议至少提供中文和英文
-* `readme`：自述文件名，主要用于挂件集市详情页中显示，支持多语言
-    * `default`：默认语言，必须存在
-    * `zh_CN`、`en_US` 等其他语言：可选，建议至少提供中文和英文
-* `funding`：挂件赞助信息
-    * `openCollective`：Open Collective 名称
-    * `patreon`：Patreon 名称
-    * `github`：GitHub 登录名
-    * `custom`：自定义赞助链接列表
-* `keywords`：搜索关键字列表，用于集市搜索功能
+伪代码渲染效果：
 
-## 打包
+![Quicksort](./preview.png)
 
-无论使用何种方式编译打包，我们最终需要生成一个 package.zip，它至少包含如下文件：
+### 支持的宏（关键词）
 
-* icon.png
-* preview.png
-* README*.md
-* widget.json
-* index.html
+* `$math_expression$`： 使用 `$` 将数学表达式包裹起来。
+* `\STATE`：基本语句，用于描述算法的每一步操作。
+* `\CALL{function_name}{$arguments$}`：调用函数。
 
-## 上架集市
+#### 输入输出
 
-* 生成 package.zip
-* 在 GitHub 上创建一个新的发布，使用挂件版本号作为 “Tag
-  version”，示例 https://github.com/siyuan-note/widget-sample/releases
-* 上传 package.zip 作为二进制附件
-* 提交发布
+* `\REQUIRE` 或 `\INPUT`：表示输入。
+* `\ENSURE` 或 `\OUTPUT`：表示输出。
 
-如果是第一次发布版本，还需要创建一个 PR 到 [Community Bazaar](https://github.com/siyuan-note/bazaar) 社区集市仓库，修改该库的
-widgets.json。该文件是所有社区挂件库的索引，格式为：
+#### 定义函数（过程）
 
-```json
-{
-  "repos": [
-    "username/reponame"
-  ]
-}
+```latex
+\FUNCTION{<name>}{<params>}
+    <block> 
+\ENDFUNCTION
 ```
 
-PR 被合并以后集市会通过 GitHub Actions 自动更新索引并部署。后续发布新版本挂件时只需要按照上述步骤创建新的发布即可，不需要再
-PR 社区集市仓库。
+或
 
-正常情况下，社区集市仓库每隔 1 小时会自动更新索引并部署，可在 https://github.com/siyuan-note/bazaar/actions 查看部署状态。
+```latex
+\PROCEDURE{<name>}{<params>}
+    <block> 
+\ENDPROCEDURE
+```
+
+#### 判断逻辑
+
+```latex
+\IF{<condition>}
+    <block>
+\ELIF{<condition>}
+    <block>
+\ELSE
+    <block>
+\ENDIF
+```
+
+#### 循环逻辑
+
+```latex
+# \WHILE, \FOR or \FORALL
+\WHILE{<condition>}
+    <block>
+\ENDWHILE
+```
+
+## 参考与感谢
+
+* [pseudocode.js](https://github.com/SaswatPadhi/pseudocode.js)
+* [KaTeX](https://github.com/Khan/KaTeX)
+* [在 Markdown 中书写伪代码](https://zhuanlan.zhihu.com/p/406649966)
+* [基于LaTeX的伪代码书写](https://welts.xyz/2022/01/17/pseudocode/)
+* [如何在博客中插入算法伪代码](https://zjuguoshuai.gitlab.io/2019/04/26/blog-pseudocode.html)

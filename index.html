@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello, Bootstrap Table!</title>
+    <title>siyuan-pseudocode</title>
     <!-- KaTeX CSS and JS -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"
@@ -17,60 +17,190 @@
       href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.js"></script>
+
+    <style>
+      html,
+      body {
+        padding: 0;
+        border: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        /* color: transparent; */
+        background-color: transparent;
+      }
+      button {
+        padding: 7px 30px;
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      button:active {
+        background-color: #004085;
+      }
+
+      /* Container for the checkbox and label */
+      .checkbox-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 10px 0;
+      }
+
+      /* Style the checkbox input */
+      .checkbox-input {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        accent-color: #007bff; /* Color of the checkmark */
+        cursor: pointer;
+      }
+
+      /* Style the label */
+      .checkbox-label {
+        font-size: 16px;
+        color: #333;
+        cursor: pointer;
+      }
+
+      /* Hover effect for the label */
+      .checkbox-label:hover {
+        color: #007bff;
+      }
+
+      /* Active effect for the label */
+      .checkbox-label:active {
+        color: #0056b3;
+      }
+
+      /* Container for the textarea */
+      .textarea-container {
+        margin: 10px 0;
+        width: 100%; /* Full width of the container */
+        max-width: 800px; /* Maximum width */
+      }
+
+      /* Style the textarea input */
+      .textarea-input {
+        width: 100%; /* Full width of the container */
+        padding: 15px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        resize: vertical; /* Allow vertical resizing */
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      /* Focus effect for the textarea */
+      .textarea-input:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        outline: none;
+      }
+
+      /* Placeholder text color */
+      .textarea-input::placeholder {
+        color: #aaa;
+        font-style: italic;
+      }
+
+      /* Hover effect for the textarea */
+      .textarea-input:hover {
+        border-color: #bbb;
+      }
+
+      /* Active effect for the textarea */
+      .textarea-input:active {
+        border-color: #007bff;
+      }
+    </style>
   </head>
   <body>
-    <div><textarea id="input-text" rows="15" cols="80"></textarea></div>
+    <div class="textarea-container">
+      <textarea
+        id="input-text"
+        rows="15"
+        cols="80"
+        class="textarea-input"
+        placeholder="请输入LaTeX格式的代码"
+      ></textarea>
+    </div>
     <div>
+      <div id="line-number-container" class="checkbox-container">
+        <input
+          id="line-number"
+          type="checkbox"
+          class="checkbox-input"
+          checked
+        />
+        <label for="line-number" class="checkbox-label">显示行号</label>
+      </div>
       <button id="submit" type="button">
         <span>提交</span>
       </button>
-      <button id="modify" type="button" style="display: none;">
+      <button id="modify" type="button" style="display: none">
         <span>修改</span>
       </button>
     </div>
-    <div id="output-container" width="100%" height="auto">
-    </div>
+    <div id="output-container" width="100%" height="auto"></div>
   </body>
   <script>
     try {
       // 输入Latex格式的代码
       const inputText = document.getElementById("input-text");
       // 按钮
+      const lineNumber = document.getElementById("line-number");
+      const lineNumberContainer = document.getElementById(
+        "line-number-container"
+      );
       const submit = document.getElementById("submit");
       const modify = document.getElementById("modify");
       // 输出
       const outputContainer = document.getElementById("output-container");
 
-
       function getCode() {
         // 获取输入的Latex格式的代码
         const inputTextValue = inputText.value;
         console.log(inputTextValue);
-        // 输出
+        // 生成 pre 标签，设置内容
         let outputCode = document.createElement("pre");
         outputCode.textContent = inputTextValue;
         outputCode.className = "pseudocode";
         outputCode.id = "output-code";
         outputCode.style.display = "block";
-        console.log(outputCode);
+        // 将 pre 标签添加到 outputContainer 中
         outputContainer.appendChild(outputCode);
+        // 设置按钮显示和隐藏
         inputText.style.display = "none";
         modify.style.display = "block";
+        lineNumberContainer.style.display = "none";
         submit.style.display = "none";
+        // 渲染伪代码
         pseudocode.renderElement(document.getElementById("output-code"), {
-          lineNumber: true,
+          lineNumber: lineNumber.checked,
         });
       }
 
       submit.addEventListener("click", getCode);
 
       modify.addEventListener("click", () => {
+        // 清空 outputContainer
         outputContainer.innerHTML = "";
+        // 设置按钮显示与隐藏
         inputText.style.display = "block";
-        modify.style.display = "none";
+        lineNumberContainer.style.display = "block";
         submit.style.display = "block";
+        modify.style.display = "none";
       });
-
     } catch (error) {
       console.log(error);
     }

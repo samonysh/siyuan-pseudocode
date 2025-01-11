@@ -2,15 +2,15 @@
   "name": "siyuan-pseudocode",
   "author": "Samon Yu",
   "url": "https://github.com/samonysh/siyuan-pseudocode",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "minAppVersion": "2.8.8",
   "displayName": {
     "default": "siyuan-pseudocode",
     "zh_CN": "伪代码"
   },
   "description": {
-    "default": "This is a widget sample",
-    "zh_CN": "这是一个挂件示例"
+    "default": "Display pseudocode in SiYuan based on pseudocode.js and LaTeX.",
+    "zh_CN": "基于pseudocode.js和LaTeX，在SiYuan中展示伪代码。"
   },
   "readme": {
     "default": "README.md",
@@ -19,12 +19,11 @@
   "funding": {
     "openCollective": "",
     "patreon": "",
-    "github": "",
+    "github": "samonysh",
     "custom": [
-      "https://ld246.com/sponsor"
     ]
   },
   "keywords": [
-    "sample", "示例"
+    "LaTeX", "伪代码"
   ]
 }
