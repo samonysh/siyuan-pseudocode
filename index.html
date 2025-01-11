@@ -24,6 +24,9 @@
       <button id="submit" type="button">
         <span>提交</span>
       </button>
+      <button id="modify" type="button" style="display: none;">
+        <span>修改</span>
+      </button>
     </div>
     <div id="output-container" width="100%" height="auto">
     </div>
@@ -32,11 +35,11 @@
     try {
       // 输入Latex格式的代码
       const inputText = document.getElementById("input-text");
-      // 提交按钮
+      // 按钮
       const submit = document.getElementById("submit");
+      const modify = document.getElementById("modify");
       // 输出
       const outputContainer = document.getElementById("output-container");
-
 
 
       function getCode() {
@@ -51,12 +54,23 @@
         outputCode.style.display = "block";
         console.log(outputCode);
         outputContainer.appendChild(outputCode);
+        inputText.style.display = "none";
+        modify.style.display = "block";
+        submit.style.display = "none";
         pseudocode.renderElement(document.getElementById("output-code"), {
           lineNumber: true,
         });
       }
 
       submit.addEventListener("click", getCode);
+
+      modify.addEventListener("click", () => {
+        outputContainer.innerHTML = "";
+        inputText.style.display = "block";
+        modify.style.display = "none";
+        submit.style.display = "block";
+      });
+
     } catch (error) {
       console.log(error);
     }
