@@ -1,7 +1,5 @@
 # siyuan-pseudocode 伪代码
 
-> 当前仍在测试阶段，存在一定问题，请勿使用。
-
 ## 介绍
 
 该挂件基于[pseudocode.js](https://github.com/SaswatPadhi/pseudocode.js)和[KaTeX](https://github.com/Khan/KaTeX)构建，旨在为思源笔记提供基于LaTeX语法的伪代码的展示。
@@ -113,6 +111,8 @@
 
 * [pseudocode.js](https://github.com/SaswatPadhi/pseudocode.js)
 * [KaTeX](https://github.com/Khan/KaTeX)
+* [Zuoqiu-Yingyi/widget-query](https://github.com/Zuoqiu-Yingyi/widget-query)
+* [leolee9086/cc-baselib](https://github.com/leolee9086/cc-baselib)
 * [在 Markdown 中书写伪代码](https://zhuanlan.zhihu.com/p/406649966)
 * [基于LaTeX的伪代码书写](https://welts.xyz/2022/01/17/pseudocode/)
 * [如何在博客中插入算法伪代码](https://zjuguoshuai.gitlab.io/2019/04/26/blog-pseudocode.html)

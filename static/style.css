@@ -1,0 +1,103 @@
+html,
+body {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  /* color: transparent; */
+  background-color: transparent;
+}
+button {
+  padding: 7px 30px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:active {
+  background-color: #004085;
+}
+
+/* Container for the checkbox and label */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px 0;
+}
+
+/* Style the checkbox input */
+.checkbox-input {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  accent-color: #007bff; /* Color of the checkmark */
+  cursor: pointer;
+}
+
+/* Style the label */
+.checkbox-label {
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Hover effect for the label */
+.checkbox-label:hover {
+  color: #007bff;
+}
+
+/* Active effect for the label */
+.checkbox-label:active {
+  color: #0056b3;
+}
+
+/* Container for the textarea */
+.textarea-container {
+  margin: 10px 0;
+  width: 100%; /* Full width of the container */
+  max-width: 800px; /* Maximum width */
+}
+
+/* Style the textarea input */
+.textarea-input {
+  width: 100%; /* Full width of the container */
+  padding: 15px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  resize: vertical; /* Allow vertical resizing */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus effect for the textarea */
+.textarea-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* Placeholder text color */
+.textarea-input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Hover effect for the textarea */
+.textarea-input:hover {
+  border-color: #bbb;
+}
+
+/* Active effect for the textarea */
+.textarea-input:active {
+  border-color: #007bff;
+}
