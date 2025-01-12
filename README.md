@@ -54,7 +54,7 @@
 
 伪代码渲染效果：
 
-![Quicksort](https://github.com/samonysh/siyuan-pseudocode/blob/main/preview.png)
+![Quicksort](https://raw.githubusercontent.com/samonysh/siyuan-pseudocode/refs/heads/main/preview.png)
 
 ### 支持的宏（关键词）
 
