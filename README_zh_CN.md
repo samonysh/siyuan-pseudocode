@@ -1,5 +1,7 @@
 # siyuan-pseudocode 伪代码
 
+> 当前仍在测试阶段，存在一定问题，请勿使用。
+
 ## 介绍
 
 该挂件基于[pseudocode.js](https://github.com/SaswatPadhi/pseudocode.js)和[KaTeX](https://github.com/Khan/KaTeX)构建，旨在为思源笔记提供基于LaTeX语法的伪代码的展示。
