@@ -90,9 +90,15 @@ try {
 
   submit.addEventListener("click", getCode);
 
-  modify.addEventListener("click", () => {
+  modify.addEventListener("click", async () => {
     // 清空 outputContainer
     outputContainer.innerHTML = "";
+    // 获取保存的内容
+    const savedContent = await getBlockAttrAPI(g_thisWidgetId);
+    // 如果有保存的内容，设置到输入框中
+    if (savedContent.data["custom-latex-code"]) {  
+      inputText.value = savedContent.data["custom-latex-code"];
+    }
     // 设置按钮显示与隐藏
     inputText.style.display = "block";
     lineNumberContainer.style.display = "block";
